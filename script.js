@@ -40,12 +40,21 @@ document.addEventListener("keyup", event =>{
 });
 
 setInterval(function(){
+    var blockLast = document.getElementById("block"+(counter-1));
+    var holeLast = document.getElementById("hole"+(counter-1));
+    if (counter>0){
+        var blockLastTop = parseInt(window.getComputedStyle(blockLast).getPropertyValue("top"));
+        var holeLastTop = parseInt(window.getComputedStyle(holeLast).getPropertyValue("top"));
+    }
+
     var block = document.createElement("div");
     var hole = document.createElement("div");
     block.setAttribute("class","block");
     hole.setAttribute("class","hole");
-    block.setAttribute("id","block");
-    hole.setAttribute("id","hole");
+    block.setAttribute("id","block"+counter);
+    hole.setAttribute("id","hole"+counter);
+    block.style.top = blockLastTop + 100 + "px";
+    hole.style.top = holeLastTop + 100 + "px";
     var random = Math.floor(Math.random() * 360);
     hole.style.left = random + "px";
     game.appendChild(block);
